@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-import './Css/Candidateregister.css'
 import { useNavigate } from 'react-router-dom';
 const Candidateregister = () => {
+  const API_URL = process.env.REACT_APP_API_URL;
   const candiateid = sessionStorage.getItem("candiateid")
   const [pdfBase64, setPdfBase64] = useState("");
   const [pdfName, setPdfName] = useState("");
@@ -39,7 +39,7 @@ const Candidateregister = () => {
   };
   const uploaddetails = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:5000/candidatedetails", { firstname, lastname, candiateid, email, phonenumber, skills: skills.split(",").slice().reverse().map(skill => skill.trim()), intro, profilepic: image, resume: pdfBase64, }).then((response) => {
+    axios.post(`${API_URL}/candidatedetails`, { firstname, lastname, candiateid, email, phonenumber, skills: skills.split(",").slice().reverse().map(skill => skill.trim()), intro, profilepic: image, resume: pdfBase64, }).then((response) => {
       console.log(response.data)
       alert("successfully uploaded")
       navigate('/candidateprofile')
@@ -53,97 +53,6 @@ const Candidateregister = () => {
 
 
   return (
-
-    // <div className="form-container">
-    //   <form onSubmit={uploaddetails} className="profile-form">
-    //     <label>First Name</label>
-    //     <input
-    //       type="text"
-    //       required
-    //       value={firstname}
-    //       onChange={(event) => setFistname(event.target.value)}
-    //     />
-
-    //     <label>Last Name</label>
-    //     <input
-    //       type="text"
-    //       required
-    //       value={lastname}
-    //       onChange={(event) => setLastname(event.target.value)}
-    //     />
-
-    //     <label>Email</label>
-    //     <input
-    //       type="email"
-    //       required
-    //       value={email}
-    //       onChange={(event) => setEmail(event.target.value)}
-    //     />
-
-    //     <label>Phone Number</label>
-    //     <input
-    //       type="tel"
-    //       pattern="[0-9]{4}[0-9]{2}[0-9]{4}"
-    //       value={phonenumber}
-    //       onChange={(event) => setPhonenumber(event.target.value)}
-    //       required
-    //     />
-
-    //     <label>
-    //       Skills{" "}
-    //       <small>(add <strong>,</strong> to separate skills)</small>
-    //     </label>
-    //     <input
-    //       type="text"
-    //       required
-    //       value={skills}
-    //       onChange={(event) => setSkills(event.target.value)}
-    //     />
-
-    //     <label>About Yourself</label>
-    //     <textarea
-    //       required
-    //       value={intro}
-    //       onChange={(event) => setIntro(event.target.value)}
-    //     ></textarea>
-
-    //     <label>Profile Picture</label>
-    //     <input
-    //       type="file"
-    //       accept="image/*"
-    //       onChange={profilepicturehandleImageChange}
-    //       required
-    //     />
-
-    //     {image && (
-    //       <div className="preview-container">
-    //         <p>Preview:</p>
-    //         <img src={image} alt="preview" className="image-preview" />
-    //       </div>
-    //     )}
-
-    //     <label>Resume</label>
-    //     <input
-    //       type="file"
-    //       accept="application/pdf"
-    //       onChange={resumehandlePDFChange}
-    //       required
-    //     />
-
-    //     {pdfBase64 && (
-    //       <div className="preview-container">
-    //         <p>Resume: {pdfName}</p>
-    //         <iframe
-    //           src={pdfBase64}
-    //           title="PDF Preview"
-    //           className="pdf-preview"
-    //         ></iframe>
-    //       </div>
-    //     )}
-
-    //     <input type="submit" value="Upload Details" className="submit-btn" />
-    //   </form>
-    // </div>
     <div className="container my-5">
   <div className="card shadow p-4">
     <h3 className="mb-4 text-center">Upload Profile Details</h3>

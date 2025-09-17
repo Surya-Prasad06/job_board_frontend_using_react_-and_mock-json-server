@@ -5,12 +5,13 @@ import { Link, useNavigate } from 'react-router-dom'
 const Jobpostingforcandidates = () => {
   const [jobpostings, setJobpostings] = useState([])
   const navigate = useNavigate();
+const API_URL = process.env.REACT_APP_API_URL;
 
   const handleApply = (id) => {
     navigate(`/candidates/joblistings/${id}`);
   };
   useEffect(() => {
-    axios.get("http://localhost:5000/jobpostings").then((response) => {
+    axios.get(`${API_URL}/jobpostings`).then((response) => {
       console.log(response.data)
       setJobpostings(response.data)
     }
@@ -18,7 +19,7 @@ const Jobpostingforcandidates = () => {
       console.error(error)
     }
     )
-  }, [])
+  }, [API_URL])
 
   return (
 

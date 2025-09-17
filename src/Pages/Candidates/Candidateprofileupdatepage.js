@@ -1,10 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import './Css/UpdateProfile.css'
 const Candidateprofileupdatepage = () => {
   const userId = sessionStorage.getItem("candiateid");
-
+const API_URL = process.env.REACT_APP_API_URL;
   const [profileId, setProfileId] = useState(null); // <-- json-server ID
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
@@ -20,7 +19,7 @@ const Candidateprofileupdatepage = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/candidatedetails?candiateid=${userId}`)
+      .get(`${API_URL}/candidatedetails?candiateid=${userId}`)
       .then((response) => {
         if (response.data.length > 0) {
           const profile = response.data[0];
@@ -40,7 +39,7 @@ const Candidateprofileupdatepage = () => {
       .catch((error) => {
         console.error(error);
       });
-  }, [userId]);
+  }, [userId, API_URL]);
 
   // Handle Resume Upload
   const resumehandlePDFChange = (e) => {
@@ -79,7 +78,7 @@ const Candidateprofileupdatepage = () => {
     }
 
     axios
-      .put(`http://localhost:5000/candidatedetails/${profileId}`, {
+      .put(`${API_URL}/candidatedetails/${profileId}`, {
         candiateid: userId, // keep candiateid for future lookups
         firstname,
         lastname,

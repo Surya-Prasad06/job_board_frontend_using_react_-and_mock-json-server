@@ -1,13 +1,14 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import "./Css/Profile.css"
+
 const Candidateprofilepage = () => {
   const userId = sessionStorage.getItem("candiateid")
+  const API_URL = process.env.REACT_APP_API_URL;
   const [profiledetails, setProfiledetails] = useState([])
   useEffect(() => {
 
-    axios.get(`http://localhost:5000/candidatedetails?candiateid=${userId}`).then((response) => {
+    axios.get(`${API_URL}/candidatedetails?candiateid=${userId}`).then((response) => {
       console.log(response.data)
       setProfiledetails(response.data)
     }
@@ -15,64 +16,10 @@ const Candidateprofilepage = () => {
       console.error(error)
     }
     )
-  }, [])
+  }, [API_URL, userId])
 
   return (
-    // <>
-    //   {profiledetails.length === 0 ? (
-    //     <div className="profile-empty">
-    //       <h2>No profile found.</h2>
-    //       <p>Please register your details to continue.</p>
-    //       <Link to="/candidateregister" className="btn-primary">
-    //         Register Your Details
-    //       </Link>
-    //     </div>
-    //   ) : (
-    //     <>
-    //       {profiledetails.slice().reverse().map((profile, index) => (
-    //         <div key={index} className="profile-card">
-    //           <h2 className="profile-name">
-    //             {profile.firstname} {profile.lastname}
-    //           </h2>
-
-    //           <h3 className="section-title">About You</h3>
-    //           <p className="profile-text">{profile.intro}</p>
-
-    //           <h3 className="section-title">Profile Picture</h3>
-    //           <img
-    //             src={profile.profilepic}
-    //             alt="Profile"
-    //             width="160"
-    //             className="profile-pic"
-    //           />
-
-    //           <h3 className="section-title">Resume</h3>
-    //           <iframe
-    //             src={profile.resume}
-    //             title="Resume Preview"
-    //             width="100%"
-    //             height="500"
-    //             className="resume-frame"
-    //           ></iframe>
-
-    //           <h3 className="section-title">Skills</h3>
-    //           <div className="skills-container">
-    //             {profile.skills.slice().reverse().map((skill, i) => (
-    //               <span key={i} className="skill-badge">
-    //                 {skill}
-    //               </span>
-    //             ))}
-    //           </div>
-    //         </div>
-    //       ))}
-    //       <div className="update-container">
-    //         <Link to={"/candidateprofile/candidateupdate"} className="btn-success">
-    //           Update Profile
-    //         </Link>
-    //       </div>
-    //     </>
-    //   )}
-    // </>
+ 
 <>
   {profiledetails.length === 0 ? (
     <div className="text-center py-5">

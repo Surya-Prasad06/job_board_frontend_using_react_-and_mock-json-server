@@ -15,7 +15,7 @@ const Jobapply = () => {
   const [message, setMessage] = useState("");
   const [pdfBase64, setPdfBase64] = useState("");
   const [pdfName, setPdfName] = useState("");
-
+const API_URL = process.env.REACT_APP_API_URL;
   // job states
   const [applyJob, setApplyJob] = useState(false);
   const [alreadyApplied, setAlreadyApplied] = useState(false);
@@ -52,7 +52,7 @@ const Jobapply = () => {
     };
 
     axios
-      .post("http://localhost:5000/jobapplication", applicationData)
+      .post(`${API_URL}/jobapplication`, applicationData)
       .then((response) => {
         alert("You have successfully applied to this position");
         console.log(response.data);
@@ -67,17 +67,17 @@ const Jobapply = () => {
   
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/jobpostings/${id}`)
+      .get(`${API_URL}/jobpostings/${id}`)
       .then((response) => {setJobDetails(response.data); setRole(response.data.role); setCompname(response.data.companyName)}
     )
       .catch((error) => console.error(error));
-  }, [id]);
+  }, [id, API_URL]);
 
   // check if already applied
   useEffect(() => {
     axios
       .get(
-        `http://localhost:5000/jobapplication?jobId=${id}&candiateid=${candidateId}`
+        `${API_URL}/jobapplication?jobId=${id}&candiateid=${candidateId}`
       )
       .then((response) => {
         if (response.data.length > 0) {
@@ -85,7 +85,7 @@ const Jobapply = () => {
         }
       })
       .catch((error) => console.error(error));
-  }, [id, candidateId]);
+  }, [id, candidateId, API_URL]);
 
   // confirm apply
   const confirmApply = () => {

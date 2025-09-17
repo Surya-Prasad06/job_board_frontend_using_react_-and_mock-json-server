@@ -3,11 +3,11 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 
 const CompanyPage = () => {
-  const userId = sessionStorage.getItem('companyId');
+  const userId = sessionStorage.getItem('companyId');const API_URL = process.env.REACT_APP_API_URL;
   const [company, setCompany] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/company?companyId=${userId}`)
+    axios.get(`${API_URL}/company?companyId=${userId}`)
       .then((response) => {
         setCompany(response.data)
         console.log(response.data[0])
@@ -19,41 +19,11 @@ const CompanyPage = () => {
         console.log(error)
       }
       )
-  }, [])
+  }, [API_URL])
 
   return (
 
 
-    // <>
-    //   {company.length === 0 ? (
-    //     <div className="no-company">
-    //       <h2>No company profile found.</h2>
-    //       <p>Please register your company details to continue.</p>
-    //       <Link to="/companyregisteration" className="register-btn">
-    //         Register Company
-    //       </Link>
-    //     </div>
-    //   ) : (
-    //     <>
-    //       {company.slice().reverse().map((comp, index) => (
-    //         <div key={index} className="company-card">
-    //           <Link to={comp.website} className="company-name">{comp.companyName}</Link>
-    //           <img src={comp.image} alt={comp.companyName} className="company-image" />
-    //           <p className="company-about">{comp.about}</p>
-    //         </div>
-    //       ))}
-
-    //       <div className="company-actions">
-    //         <Link to="/comapanypage/updateaboutcompany">
-    //           <button className="update-btn">Update Company Details</button>
-    //         </Link>
-    //         <h2>Jobs</h2>
-    //         <Link to="/companypage/jobposting" className="job-link">Add Job Posting</Link><br />
-    //         <Link to="/companypage/jobposting/joblist" className="job-link">Jobs Posted</Link>
-    //       </div>
-    //     </>
-    //   )}
-    // </>
 
     <>
   {company.length === 0 ? (

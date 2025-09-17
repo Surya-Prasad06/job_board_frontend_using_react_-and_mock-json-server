@@ -65,12 +65,13 @@ export default Loginandsignuppage;
 
 const Loginform = () => {
     const [identifier, setIdentifier] = useState(""); // email or phone
+    const API_URL = process.env.REACT_APP_API_URL;
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
     const loginsubmit = (e) => {
         e.preventDefault();
-        axios.get("http://localhost:5000/users")
+        axios.get(`${API_URL}/users`)
             .then((response) => {
                 const users = response.data;
 
@@ -146,12 +147,12 @@ const SignUpform = () => {
     const [phonenumber, setPhonenumber] = useState("")
     const [repassword, setRepassword] = useState("")
     const navigate = useNavigate()
-
+const API_URL = process.env.REACT_APP_API_URL;
     const signuphandler = (e) => {
         e.preventDefault();
         if (password.length >= 8 && repassword === password) {
 
-            axios.post("http://localhost:5000/users", { name, phonenumber, password, email })
+            axios.post(`${API_URL}/users`, { name, phonenumber, password, email })
                 .then((response) => {
                     console.log(response.data)
                     alert("account created successfully")

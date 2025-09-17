@@ -30,10 +30,12 @@ const Loginform = ({ onSwitch }) => {
   const [password, setPassword] = useState("");
   const [identifier, setIdentifier] = useState("");
   const navigate = useNavigate();
+const API_URL = process.env.REACT_APP_API_URL;
+
 
   const loginformsubmit = (e) => {
     e.preventDefault();
-    axios.get("http://localhost:5000/cadidatesregistration")
+    axios.get(`${API_URL}/cadidatesregistration`)
       .then((response) => {
         const users = response.data;
         const matchedUser = users.find(user =>
@@ -115,11 +117,12 @@ const SignUpform = ({ onSwitch }) => {
   const [password, setPassword] = useState("");
   const [repassword, setRepassword] = useState("");
   const navigate = useNavigate();
+const API_URL = process.env.REACT_APP_API_URL;
 
   const Signupformsubmit = (e) => {
     e.preventDefault();
     if (email === reemail && phonenumber === rephonenumber && password === repassword && password.length >= 8) {
-      axios.post("http://localhost:5000/cadidatesregistration", { email, password, username, phonenumber })
+      axios.post(`${API_URL}/cadidatesregistration`, { email, password, username, phonenumber })
         .then((response) => {
           alert("Scessfully Created an account😊")
           console.log(response.data)

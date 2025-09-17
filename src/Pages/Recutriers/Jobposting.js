@@ -18,11 +18,11 @@ const Jobposting = () => {
   const companyId = sessionStorage.getItem("companyId")
   const companywebsite = sessionStorage.getItem("companywebsite")
   const companyName = sessionStorage.getItem("companyName")
-
+const API_URL = process.env.REACT_APP_API_URL;
 
   const jobpostingupload = (e) => {
     e.preventDefault()
-    axios.post("http://localhost:5000/jobpostings", { role, description, experience, salary, positions, responsibilites, companyId, skills: skills.split(",").slice().reverse().map(skill => skill.trim()), typeofwork, username, companyName, companywebsite }).then((response) => {
+    axios.post(`${API_URL}/jobpostings`, { role, description, experience, salary, positions, responsibilites, companyId, skills: skills.split(",").slice().reverse().map(skill => skill.trim()), typeofwork, username, companyName, companywebsite }).then((response) => {
       console.log(response.data)
       alert("successfully uploaded")
       navigate('/companypage/jobposting/joblist')
@@ -39,88 +39,7 @@ const Jobposting = () => {
 
   return (
 
-    // <div className="job-posting-container">
-    //   <h1 className="form-title">Job Posting</h1>
-    //   <form onSubmit={jobpostingupload} className="job-posting-form">
-    //     <label>Job Role</label>
-    //     <input
-    //       type="text"
-    //       placeholder="Role"
-    //       value={role}
-    //       onChange={(e) => setRole(e.target.value)}
-    //       required
-    //     />
-
-    //     <label>Job Description</label>
-    //     <input
-    //       type="text"
-    //       placeholder="Job Description"
-    //       value={description}
-    //       onChange={(e) => setDescription(e.target.value)}
-    //       required
-    //     />
-
-    //     <label>Experience (in months)</label>
-    //     <input
-    //       type="number"
-    //       placeholder="Experience"
-    //       value={experience}
-    //       onChange={(e) => setExperience(e.target.value)}
-    //       required
-    //     />
-
-    //     <label>Salary</label>
-    //     <input
-    //       type="text"
-    //       placeholder="LPA"
-    //       value={salary}
-    //       onChange={(e) => setSalary(e.target.value)}
-    //       required
-    //     />
-
-    //     <label>No. of Openings</label>
-    //     <input
-    //       type="number"
-    //       value={positions}
-    //       onChange={(e) => setPositions(e.target.value)}
-    //       required
-    //     />
-
-    //     <label>Responsibilities</label>
-    //     <textarea
-    //       value={responsibilites}
-    //       onChange={(e) => setResponsibilites(e.target.value)}
-    //     />
-
-    //     <label>
-    //       Skills <small>(separate with commas)</small>
-    //     </label>
-    //     <input
-    //       type="text"
-    //       value={skills}
-    //       onChange={(e) => setSkills(e.target.value)}
-    //       required
-    //     />
-
-    //     <label>Type of Work</label>
-    //     <input
-    //       type="text"
-    //       value={typeofwork}
-    //       onChange={(e) => setTypeofwork(e.target.value)}
-    //       required
-    //     />
-
-    //     <label>Location</label>
-    //     <input
-    //       type="text"
-    //       value={location}
-    //       onChange={(e) => setLocation(e.target.value)}
-    //       required
-    //     />
-
-    //     <input type="submit" value="Add Job Posting" className="submit-btn" />
-    //   </form>
-    // </div>
+   
 
     <div className="container my-5">
   <h1 className="text-center mb-4">Job Posting</h1>
