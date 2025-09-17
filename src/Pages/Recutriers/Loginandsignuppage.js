@@ -2,7 +2,7 @@ import axios from "axios";
 import { Navigate } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import './Css/Loginandsignuppage.css'
+// import './Css/Loginandsignuppage.css'
 const Loginandsignuppage = () => {
     const isAuthenticated = !!sessionStorage.getItem("companyId");
 
@@ -14,59 +14,46 @@ const Loginandsignuppage = () => {
 
 
     return (
-        // <>
-        //     <div>
-        //         {isLogined ? (
-        //             <>
-        //                 <div>
+        <div className="container d-flex justify-content-center align-items-center min-vh-100">
+            <div className="col-12 col-sm-8 col-md-6 col-lg-4">
+                <div className="card shadow p-4">
+                    {isLogined ? (
+                        <>
+                            {/* Login Form */}
+                            <h3 className="text-center mb-4">Login</h3>
+                            <Loginform />
 
-        //                     <Loginform />
-        //                 </div>
-        //                 <div>
+                            <div className="text-center mt-3">
+                                <span className="text-muted">Don’t have an account?</span>
+                                <button
+                                    onClick={() => setIsLogined(false)}
+                                    className="btn btn-link p-0 ms-1"
+                                >
+                                    Sign Up
+                                </button>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            {/* Sign Up Form */}
+                            <h3 className="text-center mb-4">Sign Up</h3>
+                            <SignUpform />
 
-        //                     didn't have account <button onClick={() => {
-        //                         setIsLogined(false)
-        //                     }
-        //                     }>SignUp</button>
-        //                 </div>
-        //             </>
-        //         ) : (
-        //             <>
-        //                 <div>
-
-        //                     <SignUpform />
-        //                 </div>
-        //                 <div>
-
-        //                     already have an account <button onClick={() => {
-        //                         setIsLogined(true)
-        //                     }
-        //                     }>Login</button>
-        //                 </div>
-        //             </>
-        //         )}
-        //     </div>
-        // </>
-
-        <div className="auth-container">
-            {isLogined ? (
-                <div className="auth-card">
-                    <Loginform />
-                    <div className="switch-text">
-                        Don't have an account?
-                        <button onClick={() => setIsLogined(false)} className="switch-btn">Sign Up</button>
-                    </div>
+                            <div className="text-center mt-3">
+                                <span className="text-muted">Already have an account?</span>
+                                <button
+                                    onClick={() => setIsLogined(true)}
+                                    className="btn btn-link p-0 ms-1"
+                                >
+                                    Login
+                                </button>
+                            </div>
+                        </>
+                    )}
                 </div>
-            ) : (
-                <div className="auth-card">
-                    <SignUpform />
-                    <div className="switch-text">
-                        Already have an account?
-                        <button onClick={() => setIsLogined(true)} className="switch-btn">Login</button>
-                    </div>
-                </div>
-            )}
+            </div>
         </div>
+
 
     );
 };
@@ -80,11 +67,8 @@ const Loginform = () => {
     const [identifier, setIdentifier] = useState(""); // email or phone
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-
-
+    
     const loginsubmit = (e) => {
-        e.preventDefault();
-
         axios.get("http://localhost:5000/users")
             .then((response) => {
                 const users = response.data;
@@ -112,50 +96,42 @@ const Loginform = () => {
     }
 
     return (
-        // <>
-        // <form onSubmit={loginsubmit}>
-        //     <h1>Login</h1>
 
-        //     <label>Email or Phone Number</label><br />
-        //     <input
-        //         type="text"
-        //         value={identifier}
-        //         onChange={(e) => setIdentifier(e.target.value)}
-        //     /><br />
+        <form onSubmit={loginsubmit} className="card p-4 shadow-sm">
+            {/* Email or Phone */}
+            <div className="mb-3">
+                <label className="form-label">Email or Phone Number</label>
+                <input
+                    type="text"
+                    className="form-control"
+                    value={identifier}
+                    onChange={(e) => setIdentifier(e.target.value)}
+                    required
+                    placeholder="Enter email or phone"
+                />
+            </div>
 
-        //     <label>Password</label><br />
-        //     <input
-        //         type="password"
-        //         value={password}
-        //         onChange={(e) => setPassword(e.target.value)}
-        //     /><br />
+            {/* Password */}
+            <div className="mb-3">
+                <label className="form-label">Password</label>
+                <input
+                    type="password"
+                    className="form-control"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    placeholder="Enter password"
+                />
+            </div>
 
-        //     <input type="submit" value="Login" />
-        // </form>
-        // </>
-        <form onSubmit={loginsubmit} className="login-form">
-  <h1 className="form-title">Login</h1>
+            {/* Submit */}
+            <div className="d-grid">
+                <button type="submit" className="btn btn-primary">
+                    Login
+                </button>
+            </div>
+        </form>
 
-  <label>Email or Phone Number</label>
-  <input
-    type="text"
-    value={identifier}
-    onChange={(e) => setIdentifier(e.target.value)}
-    required
-    placeholder="Enter email or phone"
-  />
-
-  <label>Password</label>
-  <input
-    type="password"
-    value={password}
-    onChange={(e) => setPassword(e.target.value)}
-    required
-    placeholder="Enter password"
-  />
-
-  <input type="submit" value="Login" className="submit-btn" />
-</form>
 
     );
 };
@@ -196,7 +172,7 @@ const SignUpform = () => {
     }
     return (
         <>
-        {/* <form action="" onSubmit={signuphandler}>
+            {/* <form action="" onSubmit={signuphandler}>
             <label htmlFor="">Company Name</label><br />
             <input value={name} onChange={
                 (event) => {
@@ -235,57 +211,134 @@ const SignUpform = () => {
             } type="password" /> <br />
             <input type="submit" value="Signup" />
         </form> */}
-        <form onSubmit={signuphandler} className="company-signup-form">
-  <h1 className="form-title">Company Signup</h1>
+            {/* <form onSubmit={signuphandler} className="company-signup-form">
+                <h1 className="form-title">Company Signup</h1>
 
-  <label>Company Name</label>
-  <input
-    type="text"
-    value={name}
-    onChange={(e) => setName(e.target.value)}
-    placeholder="Enter company name"
-    required
-  />
+                <label>Company Name</label>
+                <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Enter company name"
+                    required
+                />
 
-  <label>Email</label>
-  <input
-    type="email"
-    value={email}
-    onChange={(e) => setEmail(e.target.value)}
-    placeholder="Enter email"
-    required
-  />
+                <label>Email</label>
+                <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter email"
+                    required
+                />
 
-  <label>Phone Number</label>
-  <input
-    type="tel"
-    value={phonenumber}
-    onChange={(e) => setPhonenumber(e.target.value)}
-    placeholder="Enter phone number"
-    pattern="[0-9]{10}"
-    required
-  />
+                <label>Phone Number</label>
+                <input
+                    type="tel"
+                    value={phonenumber}
+                    onChange={(e) => setPhonenumber(e.target.value)}
+                    placeholder="Enter phone number"
+                    pattern="[0-9]{10}"
+                    required
+                />
 
-  <label>Password</label>
-  <input
-    type="password"
-    value={password}
-    onChange={(e) => setPassword(e.target.value)}
-    placeholder="Enter password"
-    required
-  />
+                <label>Password</label>
+                <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter password"
+                    required
+                />
 
-  <label>Re-enter Password</label>
-  <input
-    type="password"
-    value={repassword}
-    onChange={(e) => setRepassword(e.target.value)}
-    placeholder="Re-enter password"
-    required
-  />
+                <label>Re-enter Password</label>
+                <input
+                    type="password"
+                    value={repassword}
+                    onChange={(e) => setRepassword(e.target.value)}
+                    placeholder="Re-enter password"
+                    required
+                />
 
-  <input type="submit" value="Signup" className="submit-btn" />
-</form>
+                <input type="submit" value="Signup" className="submit-btn" />
+            </form> */}
+
+            <form onSubmit={signuphandler} className="card p-4 shadow-sm">
+                <h2 className="text-center mb-4">Company Signup</h2>
+
+                {/* Company Name */}
+                <div className="mb-3">
+                    <label className="form-label">Company Name</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Enter company name"
+                        required
+                    />
+                </div>
+
+                {/* Email */}
+                <div className="mb-3">
+                    <label className="form-label">Email</label>
+                    <input
+                        type="email"
+                        className="form-control"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Enter email"
+                        required
+                    />
+                </div>
+
+                {/* Phone Number */}
+                <div className="mb-3">
+                    <label className="form-label">Phone Number</label>
+                    <input
+                        type="tel"
+                        className="form-control"
+                        value={phonenumber}
+                        onChange={(e) => setPhonenumber(e.target.value)}
+                        placeholder="Enter phone number"
+                        pattern="[0-9]{10}"
+                        required
+                    />
+                </div>
+
+                {/* Password */}
+                <div className="mb-3">
+                    <label className="form-label">Password</label>
+                    <input
+                        type="password"
+                        className="form-control"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="Enter password"
+                        required
+                    />
+                </div>
+
+                {/* Re-enter Password */}
+                <div className="mb-3">
+                    <label className="form-label">Re-enter Password</label>
+                    <input
+                        type="password"
+                        className="form-control"
+                        value={repassword}
+                        onChange={(e) => setRepassword(e.target.value)}
+                        placeholder="Re-enter password"
+                        required
+                    />
+                </div>
+
+                {/* Submit Button */}
+                <div className="d-grid">
+                    <button type="submit" className="btn btn-success">
+                        Signup
+                    </button>
+                </div>
+            </form>
 
         </>
     )

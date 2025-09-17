@@ -34,43 +34,134 @@ const Jobpostinglist = () => {
 };
 
   return (
+    // <>
+
+    //   {joblist.slice().reverse().map((comp) => (
+
+    //    <div key={comp.id} style={{ marginBottom: "20px", border: "1px solid #ccc", padding: "10px" }}>
+    //      <ul >
+    //         <li><Link to={comp.companywebsite}>{comp.companyName}</Link></li>
+    //         <li><h1>{comp.role}</h1></li>
+    //         <li><strong>Job Description</strong>{comp.description}</li>
+    //         <li><strong>Experience</strong>{comp.experience}</li>
+    //         <li><strong>Salary</strong>{comp.salary}</li>
+    //         <li><strong></strong>{comp.positions}</li>
+    //         <li><strong></strong>{comp.responsibilites}</li>
+    //         <li><strong>Skills</strong></li>
+    //         <ul>
+    //           {comp.skills.slice().reverse().map((skill, i) => (
+    //             <li key={i}>{skill}</li>
+    //           )
+    //           )}</ul>
+    //         <li>{comp.typeofwork}</li>
+    //       </ul>
+
+    //       <button onClick={
+    //         () => {
+    //           nav(`/companypage/jobposting/joblist/${comp.id}`)
+    //         }
+    //       }>Update Job</button>
+    //       <button onClick={() => {
+    //         nav(`/companypage/jobposting/joblist/appliedcandidates/${comp.id}`)
+    //       }
+    //       }>Applied Candidates</button>
+    //       <button onClick={() => handleDelete(comp.id)}>Delete</button>
+    //     </div>
+    //   ))}
+    //   <h1>Jobs </h1>
+    //   <Link to='/companypage/jobposting'>Add Job Posting</Link>
+    // </>
+
     <>
-
+  <div className="container my-4">
+    <div className="row g-4">
       {joblist.slice().reverse().map((comp) => (
+        <div key={comp.id} className="col-12 col-md-6 col-lg-4">
+          <div className="card h-100 shadow-sm">
+            <div className="card-body d-flex flex-column">
+              {/* Company Name */}
+              <h5 className="card-title">
+                <Link
+                  to={comp.companywebsite}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-decoration-none"
+                >
+                  {comp.companyName}
+                </Link>
+              </h5>
 
-       <div key={comp.id} style={{ marginBottom: "20px", border: "1px solid #ccc", padding: "10px" }}>
-         <ul >
-            <li><Link to={comp.companywebsite}>{comp.companyName}</Link></li>
-            <li><h1>{comp.role}</h1></li>
-            <li><strong>Job Description</strong>{comp.description}</li>
-            <li><strong>Experience</strong>{comp.experience}</li>
-            <li><strong>Salary</strong>{comp.salary}</li>
-            <li><strong></strong>{comp.positions}</li>
-            <li><strong></strong>{comp.responsibilites}</li>
-            <li><strong>Skills</strong></li>
-            <ul>
-              {comp.skills.slice().reverse().map((skill, i) => (
-                <li key={i}>{skill}</li>
-              )
-              )}</ul>
-            <li>{comp.typeofwork}</li>
-          </ul>
+              {/* Job Role */}
+              <h6 className="text-primary">{comp.role}</h6>
 
-          <button onClick={
-            () => {
-              nav(`/companypage/jobposting/joblist/${comp.id}`)
-            }
-          }>Update Job</button>
-          <button onClick={() => {
-            nav(`/companypage/jobposting/joblist/appliedcandidates/${comp.id}`)
-          }
-          }>Applied Candidates</button>
-          <button onClick={() => handleDelete(comp.id)}>Delete</button>
+              {/* Job Details */}
+              <p className="card-text">
+                <strong>Job Description:</strong> {comp.description}
+              </p>
+              <p className="card-text">
+                <strong>Experience:</strong> {comp.experience} months
+              </p>
+              <p className="card-text">
+                <strong>Salary:</strong> {comp.salary} LPA
+              </p>
+              <p className="card-text">
+                <strong>Openings:</strong> {comp.positions}
+              </p>
+              <p className="card-text">
+                <strong>Responsibilities:</strong> {comp.responsibilites}
+              </p>
+
+              {/* Skills */}
+              <p className="mb-1"><strong>Skills:</strong></p>
+              <div className="d-flex flex-wrap gap-2 mb-3">
+                {comp.skills.slice().reverse().map((skill, i) => (
+                  <span key={i} className="badge bg-secondary">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+
+              <p className="card-text">
+                <strong>Work Type:</strong> {comp.typeofwork}
+              </p>
+
+              {/* Action Buttons */}
+              <div className="mt-auto d-flex gap-2">
+                <button
+                  className="btn btn-sm btn-outline-primary"
+                  onClick={() => nav(`/companypage/jobposting/joblist/${comp.id}`)}
+                >
+                  Update Job
+                </button>
+                <button
+                  className="btn btn-sm btn-outline-success"
+                  onClick={() => nav(`/companypage/jobposting/joblist/appliedcandidates/${comp.id}`)}
+                >
+                  Applied Candidates
+                </button>
+                <button
+                  className="btn btn-sm btn-outline-danger"
+                  onClick={() => handleDelete(comp.id)}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       ))}
-      <h1>Jobs </h1>
-      <Link to='/companypage/jobposting'>Add Job Posting</Link>
-    </>
+    </div>
+
+    {/* Add New Job Posting */}
+    <div className="text-center mt-5">
+      <h2>Jobs</h2>
+      <Link to="/companypage/jobposting" className="btn btn-primary mt-2">
+        Add Job Posting
+      </Link>
+    </div>
+  </div>
+</>
+
   )
 }
 

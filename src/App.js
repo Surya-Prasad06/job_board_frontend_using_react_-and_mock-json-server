@@ -1,4 +1,4 @@
-
+import './App.css'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Loginandsignuppage from './Pages/Recutriers/Loginandsignuppage';
 import Organisationregusteration from './Pages/Recutriers/Organisationregusteration';

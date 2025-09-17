@@ -103,135 +103,140 @@ const Updateaboutcompany = () => {
   };
 
   return (
-    // <div>
-    //   <h1>Company Registration</h1>
-    //   <form onSubmit={handleSubmit}>
-    //     <label>Name (Uploader):</label>
-    //     <br />
-    //     <input
-    //       type="text"
-    //       name="uploaderName"
-    //       value={formData.uploaderName}
-    //       onChange={handleChange}
-    //       required
-    //     />
-    //     <br />
-    //     <br />
+//     <div className="company-registration-container">
+//   <h1 className="form-title">Company Registration</h1>
+//   <form onSubmit={handleSubmit} className="company-registration-form">
 
-    //     <label>Company Name:</label>
-    //     <br />
-    //     <input
-    //       type="text"
-    //       name="companyName"
-    //       value={formData.companyName}
-    //       onChange={handleChange}
-    //       required
-    //     />
-    //     <br />
-    //     <br />
+//     <label>Name (Uploader):</label>
+//     <input
+//       type="text"
+//       name="uploaderName"
+//       value={formData.uploaderName}
+//       onChange={handleChange}
+//       placeholder="Enter your name"
+//       required
+//     />
 
-    //     <label>Website:</label>
-    //     <br />
-    //     <input
-    //       type="url"
-    //       name="website"
-    //       value={formData.website}
-    //       onChange={handleChange}
-    //     />
-    //     <br />
-    //     <br />
+//     <label>Company Name:</label>
+//     <input
+//       type="text"
+//       name="companyName"
+//       value={formData.companyName}
+//       onChange={handleChange}
+//       placeholder="Enter company name"
+//       required
+//     />
 
-    //     <label>About Company:</label>
-    //     <br />
-    //     <textarea
-    //       name="about"
-    //       value={formData.about}
-    //       onChange={handleChange}
-    //     />
-    //     <br />
-    //     <br />
+//     <label>Website:</label>
+//     <input
+//       type="url"
+//       name="website"
+//       value={formData.website}
+//       onChange={handleChange}
+//       placeholder="https://example.com"
+//     />
 
-    //     <label>Company image:</label>
-    //     <br />
-    //     <input
-    //       type="file"
-    //       accept="image/*"
-    //       onChange={handleImageChange}
-    //       required={!formData.image}
-    //     />
-    //     <br />
-    //     <br />
+//     <label>About Company:</label>
+//     <textarea
+//       name="about"
+//       value={formData.about}
+//       onChange={handleChange}
+//       placeholder="Brief description about company"
+//     />
 
-    //     {preview && (
-    //       <div>
-    //         <p>Preview:</p>
-    //         <img src={preview} alt="Preview" width="200" />
-    //       </div>
-    //     )}
+//     <label>Company Image:</label>
+//     <input
+//       type="file"
+//       accept="image/*"
+//       onChange={handleImageChange}
+//       required={!formData.image}
+//     />
 
-    //     <button type="submit">Submit</button>
-    //   </form>
-    // </div>
+//     {preview && (
+//       <div className="image-preview">
+//         <p>Preview:</p>
+//         <img src={preview} alt="Preview" />
+//       </div>
+//     )}
 
-    <div className="company-registration-container">
-  <h1 className="form-title">Company Registration</h1>
-  <form onSubmit={handleSubmit} className="company-registration-form">
+//     <button type="submit" className="submit-btn">Submit</button>
+//   </form>
+// </div>
+<div className="container mt-5">
+  <h1 className="text-center mb-4">Company Registration</h1>
+  <form onSubmit={handleSubmit} className="p-4 border rounded shadow bg-light">
 
-    <label>Name (Uploader):</label>
-    <input
-      type="text"
-      name="uploaderName"
-      value={formData.uploaderName}
-      onChange={handleChange}
-      placeholder="Enter your name"
-      required
-    />
+    <div className="mb-3">
+      <label className="form-label">Name (Uploader):</label>
+      <input
+        type="text"
+        name="uploaderName"
+        value={formData.uploaderName}
+        onChange={handleChange}
+        placeholder="Enter your name"
+        required
+        className="form-control"
+      />
+    </div>
 
-    <label>Company Name:</label>
-    <input
-      type="text"
-      name="companyName"
-      value={formData.companyName}
-      onChange={handleChange}
-      placeholder="Enter company name"
-      required
-    />
+    <div className="mb-3">
+      <label className="form-label">Company Name:</label>
+      <input
+        type="text"
+        name="companyName"
+        value={formData.companyName}
+        onChange={handleChange}
+        placeholder="Enter company name"
+        required
+        className="form-control"
+      />
+    </div>
 
-    <label>Website:</label>
-    <input
-      type="url"
-      name="website"
-      value={formData.website}
-      onChange={handleChange}
-      placeholder="https://example.com"
-    />
+    <div className="mb-3">
+      <label className="form-label">Website:</label>
+      <input
+        type="url"
+        name="website"
+        value={formData.website}
+        onChange={handleChange}
+        placeholder="https://example.com"
+        className="form-control"
+      />
+    </div>
 
-    <label>About Company:</label>
-    <textarea
-      name="about"
-      value={formData.about}
-      onChange={handleChange}
-      placeholder="Brief description about company"
-    />
+    <div className="mb-3">
+      <label className="form-label">About Company:</label>
+      <textarea
+        name="about"
+        value={formData.about}
+        onChange={handleChange}
+        placeholder="Brief description about company"
+        className="form-control"
+      />
+    </div>
 
-    <label>Company Image:</label>
-    <input
-      type="file"
-      accept="image/*"
-      onChange={handleImageChange}
-      required={!formData.image}
-    />
+    <div className="mb-3">
+      <label className="form-label">Company Image:</label>
+      <input
+        type="file"
+        accept="image/*"
+        onChange={handleImageChange}
+        required={!formData.image}
+        className="form-control"
+      />
+    </div>
 
     {preview && (
-      <div className="image-preview">
-        <p>Preview:</p>
-        <img src={preview} alt="Preview" />
+      <div className="mb-3">
+        <p className="fw-bold">Preview:</p>
+        <img src={preview} alt="Preview" className="img-thumbnail" style={{ maxWidth: "200px" }} />
       </div>
     )}
 
-    <button type="submit" className="submit-btn">Submit</button>
+    <button type="submit" className="btn btn-primary w-100">Submit</button>
   </form>
 </div>
+
 
   );
 };

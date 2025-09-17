@@ -11,7 +11,7 @@ const CandidateNavbar = () => {
   }, [candiateid, navigate]);
 
   if (!candiateid) {
-    return null; // Don't render navbar while redirecting
+    return null;
   }
   const handleRemove = (e) => {
     e.preventDefault();
@@ -21,112 +21,119 @@ const CandidateNavbar = () => {
   }
 
   return (
-    <>
-      {/* Themed Navbar */}
-      <div style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "14px 32px",
-        backgroundColor: "#1976d2", // Primary theme color
-        color: "white",
-        fontFamily: "Roboto, sans-serif",
-        boxShadow: "0 2px 6px rgba(0,0,0,0.2)"
-      }}>
+    // <>
+    //   {/* Themed Navbar */}
+    //   <div className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
 
-        {/* Brand */}
-        <h1 style={{
-          margin: 0,
-          fontSize: "22px",
-          fontWeight: 600,
-          letterSpacing: "0.5px"
-        }}>
-          CareerLink
-        </h1>
+    //     {/* Brand */}
+    //     <h1 style={{color:"white"}}>
+    //       CareerLink
+    //     </h1>
 
-        {/* Links + Button */}
-        <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
-          <Link
-            to="/candidateprofile"
-            style={{
-              textDecoration: "none",
-              color: "white",
-              fontSize: "16px",
-              fontWeight: 500,
-              padding: "6px 10px",
-              borderRadius: "4px",
-              transition: "background-color 0.2s"
-            }}
-            onMouseEnter={(e) => e.target.style.backgroundColor = "rgba(255,255,255,0.2)"}
-            onMouseLeave={(e) => e.target.style.backgroundColor = "transparent"}
-          >
-            Candidate Profile
-          </Link>
+    //     {/* Links + Button */}
+    //     <div >
+    //       <Link to="/candidateprofile">
+    //         Candidate Profile
+    //       </Link>
 
-          <Link
-            to="/candidates/joblistings"
-            style={{
-              textDecoration: "none",
-              color: "white",
-              fontSize: "16px",
-              fontWeight: 500,
-              padding: "6px 10px",
-              borderRadius: "4px",
-              transition: "background-color 0.2s"
-            }}
-            onMouseEnter={(e) => e.target.style.backgroundColor = "rgba(255,255,255,0.2)"}
-            onMouseLeave={(e) => e.target.style.backgroundColor = "transparent"}
-          >
-            Jobs
-          </Link>
+    //       <Link to="/candidates/joblistings">
+    //         Jobs
+    //       </Link>
 
 
-          <Link
-            to="/candidates/appliedjobs"
-            style={{
-              textDecoration: "none",
-              color: "white",
-              fontSize: "16px",
-              fontWeight: 500,
-              padding: "6px 10px",
-              borderRadius: "4px",
-              transition: "background-color 0.2s"
-            }}
-            onMouseEnter={(e) => e.target.style.backgroundColor = "rgba(255,255,255,0.2)"}
-            onMouseLeave={(e) => e.target.style.backgroundColor = "transparent"}
-          >
-            Applied jobs
-          </Link>
+    //       <Link to="/candidates/appliedjobs"  >
+    //         Applied jobs
+    //       </Link>
 
-          <button
-            onClick={handleRemove}
-            style={{
-              backgroundColor: "#ffffff",
-              color: "#1976d2",
-              padding: "8px 16px",
-              border: "none",
-              borderRadius: "4px",
-              fontSize: "14px",
-              fontWeight: 600,
-              textTransform: "uppercase",
-              cursor: "pointer",
-              boxShadow: "0 2px 4px rgba(0,0,0,0.2)",
-              transition: "background-color 0.2s, box-shadow 0.2s"
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.backgroundColor = "#f1f1f1";
-              e.target.style.boxShadow = "0 4px 8px rgba(0,0,0,0.3)";
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.backgroundColor = "#ffffff";
-              e.target.style.boxShadow = "0 2px 4px rgba(0,0,0,0.2)";
-            }}
-          >
-            Logout
-          </button>
-        </div>
+    //       <button
+    //         onClick={handleRemove}
+    //       >
+    //         Logout
+    //       </button>
+    //     </div>
+    //   </div>
+    // </>
+<>
+  {/* Themed Navbar */}
+  <nav className="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-body custom-navbar" data-bs-theme="dark">
+    <div className="container-fluid">
+      
+      {/* Brand */}
+      <Link className="navbar-brand fw-bold" to="/">
+        CareerLink
+      </Link>
+
+      {/* Toggler (for mobile view) */}
+      <button
+        className="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span className="navbar-toggler-icon"></span>
+      </button>
+
+      {/* Links + Button */}
+      <div className="collapse navbar-collapse" id="navbarNav">
+        <ul className="navbar-nav ms-auto">
+          <li className="nav-item">
+            <Link className="nav-link custom-link" to="/candidateprofile">
+              Candidate Profile
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link custom-link" to="/candidates/joblistings">
+              Jobs
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link custom-link" to="/candidates/appliedjobs">
+              Applied Jobs
+            </Link>
+          </li>
+          <li className="nav-item">
+            <button className="btn btn-outline-light ms-2 custom-btn" onClick={handleRemove}>
+              Logout
+            </button>
+          </li>
+        </ul>
       </div>
-    </>
+    </div>
+  </nav>
+
+  {/* Custom CSS */}
+  <style>
+    {`
+      /* Instead of forcing navbar height, use padding for taller look */
+      .custom-navbar {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+      }
+      .custom-link {
+        transition: color 0.3s ease, transform 0.2s ease;
+      }
+      .custom-link:hover {
+        color: #0d6efd !important; /* Bootstrap primary blue */
+        transform: translateY(-2px);
+      }
+      .custom-btn {
+        transition: all 0.3s ease;
+      }
+      .custom-btn:hover {
+        background-color: #0d6efd;
+        color: white;
+        border-color: #0d6efd;
+        transform: scale(1.05);
+      }
+    `}
+  </style>
+</>
+
+
+
 
   );
 };
