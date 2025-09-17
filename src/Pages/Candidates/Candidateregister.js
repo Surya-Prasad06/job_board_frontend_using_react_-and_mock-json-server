@@ -40,7 +40,7 @@ const Candidateregister = () => {
   const uploaddetails = (e) => {
     e.preventDefault();
     axios.post(`${API_URL}/candidatedetails`, { firstname, lastname, candiateid, email, phonenumber, skills: skills.split(",").slice().reverse().map(skill => skill.trim()), intro, profilepic: image, resume: pdfBase64, }).then((response) => {
-      console.log(response.data)
+      
       alert("successfully uploaded")
       navigate('/candidateprofile')
     }

@@ -40,7 +40,7 @@ const OrganisationRegistration = () => {
       .then(res => {
         alert("you have registered");
         nav('/companypage')
-        console.log(res.data);
+        
       })
       .catch(err => {
         console.error(err);

@@ -154,7 +154,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 
             axios.post(`${API_URL}/users`, { name, phonenumber, password, email })
                 .then((response) => {
-                    console.log(response.data)
+                   
                     alert("account created successfully")
                     navigate('/companyregisteration')
                     sessionStorage.setItem('username', name);

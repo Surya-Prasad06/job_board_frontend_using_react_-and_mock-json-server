@@ -9,7 +9,7 @@ const API_URL = process.env.REACT_APP_API_URL;
   useEffect(() => {
 
     axios.get(`${API_URL}/jobpostings?companyId=${companyId}`).then((response) => {
-      console.log(response.data);
+     
       setJoblist(response.data)
     }
     ).catch((error) => {

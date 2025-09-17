@@ -10,7 +10,7 @@ const CompanyPage = () => {
     axios.get(`${API_URL}/company?companyId=${userId}`)
       .then((response) => {
         setCompany(response.data)
-        console.log(response.data[0])
+        
 
         sessionStorage.setItem("companywebsite", response.data[0].website);
         sessionStorage.setItem("companyName", response.data[0].companyName);

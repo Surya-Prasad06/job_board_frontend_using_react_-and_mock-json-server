@@ -16,23 +16,7 @@ const Home = () => {
   }, [candiateid, companyId, nav]);
 
   return (
-    // <div className="home-container">
-    //   <h1 className="home-title">CareerLink</h1>
-    //   <div className="link-container">
-    //     <Link to="/recutrierslogin" className="login-link">
-    //       <span role="img" aria-label="recruiter icon" className="login-icon">
-            
-    //       </span>
-    //       Recruiter Login
-    //     </Link>
-    //     <Link to="/candidatesuserlogin" className="login-link">
-    //       <span role="img" aria-label="candidate icon" className="login-icon">
-            
-    //       </span>
-    //       Candidate Login
-    //     </Link>
-    //   </div>
-    // </div>
+    
     <div className="container d-flex flex-column align-items-center justify-content-center text-center" style={{ minHeight: "80vh" }}>
   <h1 className="display-4 mb-5">CareerLink</h1>
 

@@ -12,7 +12,7 @@ const AppliedJobs = () => {
   useEffect(() => {
     axios.get(`${API_URL}/jobapplication?candiateid=${candidateId}`)
       .then((response) => {
-        console.log("Applied jobs:", response.data)
+        
         setAppliedJobs(response.data)
       })
       .catch((error) => { console.error(error) })
@@ -22,7 +22,7 @@ const AppliedJobs = () => {
     axios.get(`${API_URL}/applicationstatus?applicationId=${candidateId}`)
       .then((response) => {
         setStatus(response.data)
-        console.log("Application status:", response.data)
+        
       })
       .catch((error) => { console.error(error) })
   }, [candidateId, API_URL])
@@ -32,7 +32,7 @@ const AppliedJobs = () => {
     axios.get(`${API_URL}/jobpostings`)
       .then((response) => {
         setJobPostings(response.data)
-        console.log("Job postings:", response.data)
+        
       })
       .catch((error) => { console.error(error) })
   }, [API_URL])

@@ -55,7 +55,7 @@ const API_URL = process.env.REACT_APP_API_URL;
       .post(`${API_URL}/jobapplication`, applicationData)
       .then((response) => {
         alert("You have successfully applied to this position");
-        console.log(response.data);
+       
         setAlreadyApplied(true);
         setApplyJob(false);
         nav("/candidates/joblistings");

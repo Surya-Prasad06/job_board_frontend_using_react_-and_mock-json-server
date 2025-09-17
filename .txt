@@ -159,7 +159,7 @@ const SignUpform = () => {
       axios.post("http://localhost:5000/cadidatesregistration", { email, password, username, phonenumber })
         .then((response) => {
           alert("Scessfully Created an account😊")
-          console.log(response.data)
+         
           navigate('/candidateregister')
           sessionStorage.setItem("candiateid", response.data.id)
           sessionStorage.setItem("username", username)

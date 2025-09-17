@@ -90,12 +90,9 @@ const API_URL = process.env.REACT_APP_API_URL;
         resume: pdfBase64,
       })
       .then((response) => {
-        console.log(response.data);
+       
         alert("Profile updated successfully!");
-        sessionStorage.setItem(
-          "candidateDetails",
-          JSON.stringify(response.data)
-        );
+       
         navigate("/candidateprofile");
       })
       .catch((error) => {

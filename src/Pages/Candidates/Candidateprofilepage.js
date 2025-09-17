@@ -9,7 +9,7 @@ const Candidateprofilepage = () => {
   useEffect(() => {
 
     axios.get(`${API_URL}/candidatedetails?candiateid=${userId}`).then((response) => {
-      console.log(response.data)
+      
       setProfiledetails(response.data)
     }
     ).catch((error) => {

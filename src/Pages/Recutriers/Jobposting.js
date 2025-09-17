@@ -23,7 +23,7 @@ const API_URL = process.env.REACT_APP_API_URL;
   const jobpostingupload = (e) => {
     e.preventDefault()
     axios.post(`${API_URL}/jobpostings`, { role, description, experience, salary, positions, responsibilites, companyId, skills: skills.split(",").slice().reverse().map(skill => skill.trim()), typeofwork, username, companyName, companywebsite }).then((response) => {
-      console.log(response.data)
+      
       alert("successfully uploaded")
       navigate('/companypage/jobposting/joblist')
 
