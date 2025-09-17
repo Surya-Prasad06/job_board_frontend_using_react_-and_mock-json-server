@@ -1,7 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-// import './Css/AppliedCandidates.css'
 const AppliedCandidates = () => {
   const [appliedCandidates, setAppliedCandidates] = useState([])
   const [buttonview, setButtonview] = useState(null) // track expanded candidate

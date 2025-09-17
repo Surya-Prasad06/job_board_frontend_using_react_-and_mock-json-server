@@ -2,7 +2,7 @@ import axios from "axios";
 import { Navigate } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import './Css/Loginandsignuppage.css'
+
 const Loginandsignuppage = () => {
     const isAuthenticated = !!sessionStorage.getItem("companyId");
 
@@ -67,8 +67,9 @@ const Loginform = () => {
     const [identifier, setIdentifier] = useState(""); // email or phone
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-    
+
     const loginsubmit = (e) => {
+        e.preventDefault();
         axios.get("http://localhost:5000/users")
             .then((response) => {
                 const users = response.data;

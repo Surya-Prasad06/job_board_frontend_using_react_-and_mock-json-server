@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './Css/Updateaboutcompany.css'
+
 const Updateaboutcompany = () => {
   const userId = sessionStorage.getItem('companyId');
   const [formData, setFormData] = useState({

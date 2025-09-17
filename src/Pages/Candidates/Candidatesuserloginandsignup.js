@@ -1,14 +1,18 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Css/Candidatesuserloginandsignup.css";
+
 
 const Candidatesuserloginandsignup = () => {
   const [isLogined, setIsLogined] = useState(true);
 
   return (
-    <div className="center-wrapper">
-      <div className="form-container">
+    <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
+      <div className="card shadow p-4" style={{ width: "100%", maxWidth: "400px" }}>
+        <h3 className="text-center mb-4">
+          {isLogined ? "Login" : "Sign Up"}
+        </h3>
+
         {isLogined ? (
           <Loginform onSwitch={() => setIsLogined(false)} />
         ) : (
@@ -16,6 +20,7 @@ const Candidatesuserloginandsignup = () => {
         )}
       </div>
     </div>
+
   );
 };
 
@@ -28,7 +33,6 @@ const Loginform = ({ onSwitch }) => {
 
   const loginformsubmit = (e) => {
     e.preventDefault();
-
     axios.get("http://localhost:5000/cadidatesregistration")
       .then((response) => {
         const users = response.data;
@@ -53,27 +57,52 @@ const Loginform = ({ onSwitch }) => {
   };
 
   return (
-    <form onSubmit={loginformsubmit} className="login-form">
-      <h2 className="form-title">Login</h2>
-      <label>Email or Phone Number</label>
-      <input
-        type="text"
-        value={identifier}
-        onChange={(e) => setIdentifier(e.target.value)}
-        required
-      />
-      <label>Password</label>
-      <input
-        value={password}
-        onChange={(event) => setPassword(event.target.value)}
-        type="password"
-        required
-      />
-      <input type="submit" value="Login" className="submit-btn" />
-      <div className="switch-link" onClick={onSwitch}>
-        Don&apos;t have an account? <b>Sign Up</b>
+
+    <form onSubmit={loginformsubmit} className="needs-validation" noValidate>
+      {/* Email or Phone Number */}
+      <div className="mb-3">
+        <label className="form-label">Email or Phone Number</label>
+        <input
+          type="text"
+          className="form-control"
+          value={identifier}
+          onChange={(e) => setIdentifier(e.target.value)}
+          required
+        />
+      </div>
+
+      {/* Password */}
+      <div className="mb-3">
+        <label className="form-label">Password</label>
+        <input
+          type="password"
+          className="form-control"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+          required
+        />
+      </div>
+
+      {/* Submit Button */}
+      <div className="d-grid">
+        <button type="submit" className="btn btn-primary">
+          Login
+        </button>
+      </div>
+
+      {/* Switch Link */}
+      <div className="text-center mt-3">
+        <span className="text-muted">Don&apos;t have an account? </span>
+        <button
+          type="button"
+          className="btn btn-link p-0 fw-bold"
+          onClick={onSwitch}
+        >
+          Sign Up
+        </button>
       </div>
     </form>
+
   );
 };
 
@@ -110,63 +139,116 @@ const SignUpform = ({ onSwitch }) => {
   };
 
   return (
-    <form onSubmit={Signupformsubmit} className="signup-form">
-      <h2 className="form-title">Create Account</h2>
-      <label>Username</label>
-      <input
-        value={username}
-        onChange={(event) => setUsername(event.target.value)}
-        type="text"
-        required
-      />
-      <label>Email</label>
-      <input
-        type="email"
-        value={email}
-        onChange={(event) => setEmail(event.target.value)}
-        required
-      />
-      <label>Re-Enter Email</label>
-      <input
-        type="email"
-        value={reemail}
-        onChange={(event) => setReemail(event.target.value)}
-        required
-      />
-      <label>Phone Number</label>
-      <input
-        type="tel"
-        value={phonenumber}
-        onChange={(event) => setPhonenumber(event.target.value)}
-        pattern="[0-9]{10}"
-        required
-      />
-      <label>Re-Enter Phone Number</label>
-      <input
-        type="tel"
-        value={rephonenumber}
-        onChange={(event) => setRephonenumber(event.target.value)}
-        pattern="[0-9]{10}"
-        required
-      />
-      <label>Password</label>
-      <input
-        type="password"
-        value={password}
-        onChange={(event) => setPassword(event.target.value)}
-        required
-      />
-      <label>Re-Enter Password</label>
-      <input
-        type="password"
-        value={repassword}
-        onChange={(event) => setRepassword(event.target.value)}
-        required
-      />
-      <input type="submit" value="Sign Up" className="submit-btn" />
-      <div className="switch-link" onClick={onSwitch}>
-        Already have an account? <b>Login</b>
+
+    <form onSubmit={Signupformsubmit} className="needs-validation" noValidate>
+      <h3 className="text-center mb-4">Create Account</h3>
+
+      {/* Username */}
+      <div className="mb-3">
+        <label className="form-label">Username</label>
+        <input
+          type="text"
+          className="form-control"
+          value={username}
+          onChange={(event) => setUsername(event.target.value)}
+          required
+        />
+      </div>
+
+      {/* Email */}
+      <div className="mb-3">
+        <label className="form-label">Email</label>
+        <input
+          type="email"
+          className="form-control"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+          required
+        />
+      </div>
+
+      {/* Re-Enter Email */}
+      <div className="mb-3">
+        <label className="form-label">Re-Enter Email</label>
+        <input
+          type="email"
+          className="form-control"
+          value={reemail}
+          onChange={(event) => setReemail(event.target.value)}
+          required
+        />
+      </div>
+
+      {/* Phone Number */}
+      <div className="mb-3">
+        <label className="form-label">Phone Number</label>
+        <input
+          type="tel"
+          className="form-control"
+          pattern="[0-9]{10}"
+          value={phonenumber}
+          onChange={(event) => setPhonenumber(event.target.value)}
+          required
+        />
+        <div className="form-text">Enter 10 digits</div>
+      </div>
+
+      {/* Re-Enter Phone Number */}
+      <div className="mb-3">
+        <label className="form-label">Re-Enter Phone Number</label>
+        <input
+          type="tel"
+          className="form-control"
+          pattern="[0-9]{10}"
+          value={rephonenumber}
+          onChange={(event) => setRephonenumber(event.target.value)}
+          required
+        />
+      </div>
+
+      {/* Password */}
+      <div className="mb-3">
+        <label className="form-label">Password</label>
+        <input
+          type="password"
+          className="form-control"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+          required
+        />
+      </div>
+
+      {/* Re-Enter Password */}
+      <div className="mb-3">
+        <label className="form-label">Re-Enter Password</label>
+        <input
+          type="password"
+          className="form-control"
+          value={repassword}
+          onChange={(event) => setRepassword(event.target.value)}
+          required
+        />
+      </div>
+
+      {/* Submit Button */}
+      <div className="d-grid">
+        <button type="submit" className="btn btn-success">
+          Sign Up
+        </button>
+      </div>
+
+      {/* Switch Link */}
+      <div className="text-center mt-3">
+        <span className="text-muted">Already have an account? </span>
+        <button
+          type="button"
+          className="btn btn-link p-0 fw-bold"
+          onClick={onSwitch}
+        >
+          Login
+        </button>
       </div>
     </form>
+
   );
 };

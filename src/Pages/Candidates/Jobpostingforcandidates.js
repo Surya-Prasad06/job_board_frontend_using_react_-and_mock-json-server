@@ -1,6 +1,5 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import './Css/Jobpostingforcandidates.css'
 import { Link, useNavigate } from 'react-router-dom'
 
 const Jobpostingforcandidates = () => {
@@ -22,57 +21,64 @@ const Jobpostingforcandidates = () => {
   }, [])
 
   return (
-    // <>
-    //   {
-    //     jobpostings.slice().reverse().map((jobs, index) => (
-    //       <div key={jobs.id}> 
-         
-    //       <h1><Link to={jobs.companywebsite}>{jobs.companyName}</Link></h1>
-    //         <h1>{jobs.role}</h1>
-    //         <p>{jobs.description}</p>
-    //         <p>Experience:{jobs.experience}</p>
-    //         <p>No. of positions:- {jobs.positions}</p>
-    //         <strong>Skills:-</strong>
-    //         <ul>
-    //           {jobs.skills.slice().reverse().map((skill, i) => (
-    //             <li key={i}>{skill}</li>
-    //           )
-    //           )}
-    //         </ul>
-    //         <button onClick={() => handleApply(jobs.id)}>Apply to this job</button>
-    //       </div>
-    //     )
-    //     )
-    //   }
-    // </>
 
-    <>
-  {jobpostings.slice().reverse().map((jobs) => (
-    <div key={jobs.id} className="job-card">
-      <h2 className="company-name">
-        <Link to={jobs.companywebsite}>{jobs.companyName}</Link>
-      </h2>
-      <h3 className="job-role">{jobs.role}</h3>
-      <p className="job-description">{jobs.description}</p>
-      <p className="job-meta">Experience: {jobs.experience}</p>
-      <p className="job-meta">No. of positions: {jobs.positions}</p>
+ <div className="d-flex justify-content-center">
+  <div className="w-75"> {/* Adjust width (w-50, w-75, etc.) */}
+    {jobpostings.slice().reverse().map((jobs) => (
+      <div key={jobs.id} className="card shadow-sm mb-4 mx-auto" style={{ maxWidth: "700px" }}>
+        <div className="card-body">
+          {/* Company */}
+          <h4 className="card-title">
+            <Link
+              to={jobs.companywebsite}
+              className="text-decoration-none fw-bold text-primary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {jobs.companyName}
+            </Link>
+          </h4>
 
-      <strong>Skills:</strong>
-      <ul className="skills-list">
-        {jobs.skills.slice().reverse().map((skill, i) => (
-          <li key={i} className="skill-item">{skill}</li>
-        ))}
-      </ul>
+          {/* Role */}
+          <h5 className="card-subtitle mb-2 text-dark">{jobs.role}</h5>
 
-      <button
-        className="apply-btn"
-        onClick={() => handleApply(jobs.id)}
-      >
-        Apply to this job
-      </button>
-    </div>
-  ))}
-</>
+          {/* Description */}
+          <p className="card-text">{jobs.description}</p>
+
+          {/* Meta Info */}
+          <p className="mb-1">
+            <span className="fw-bold">Experience:</span> {jobs.experience}
+          </p>
+          <p className="mb-3">
+            <span className="fw-bold">Positions:</span> {jobs.positions}
+          </p>
+
+          {/* Skills */}
+          <strong>Skills:</strong>
+          <ul className="list-inline mt-2">
+            {jobs.skills.slice().reverse().map((skill, i) => (
+              <li key={i} className="list-inline-item badge bg-secondary me-1">
+                {skill}
+              </li>
+            ))}
+          </ul>
+
+          {/* Apply Button */}
+          <div className="d-grid mt-3">
+            <button
+              className="btn btn-success"
+              onClick={() => handleApply(jobs.id)}
+            >
+              Apply to this Job
+            </button>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+
 
   )
 }

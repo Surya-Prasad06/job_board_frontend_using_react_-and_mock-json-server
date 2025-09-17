@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
-// import './Css/CompanyPage.css'
+
 const CompanyPage = () => {
   const userId = sessionStorage.getItem('companyId');
   const [company, setCompany] = useState([]);

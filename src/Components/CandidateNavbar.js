@@ -17,6 +17,7 @@ const CandidateNavbar = () => {
     e.preventDefault();
     sessionStorage.clear();
     navigate('/')
+    window.location.reload();
 
   }
 

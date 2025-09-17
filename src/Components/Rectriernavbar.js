@@ -7,6 +7,7 @@ const Rectriernavbar = () => {
   const handleRemove = () => {
     sessionStorage.clear();
     navigate('/')
+    window.location.reload();
   }
   return (
     <>

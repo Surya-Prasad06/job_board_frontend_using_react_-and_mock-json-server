@@ -106,199 +106,140 @@ const Candidateprofileupdatepage = () => {
   };
 
   return (
-    // <div>
-    //   <form onSubmit={updateDetails}>
-    //     <label>First Name:</label>
-    //     <input
-    //       type="text"
-    //       required
-    //       value={firstname}
-    //       onChange={(e) => setFirstname(e.target.value)}
-    //     />
-    //     <br />
-
-    //     <label>Last Name:</label>
-    //     <input
-    //       type="text"
-    //       required
-    //       value={lastname}
-    //       onChange={(e) => setLastname(e.target.value)}
-    //     />
-    //     <br />
-
-    //     <label>Email:</label>
-    //     <input
-    //       type="email"
-    //       required
-    //       value={email}
-    //       onChange={(e) => setEmail(e.target.value)}
-    //     />
-    //     <br />
-
-    //     <label>Phone Number:</label>
-    //     <input
-    //       type="tel"
-    //       pattern="[0-9]{4}[0-9]{2}[0-9]{4}"
-    //       value={phonenumber}
-    //       onChange={(e) => setPhonenumber(e.target.value)}
-    //       required
-    //     />
-    //     <br />
-
-    //     <label>
-    //       Skills{" "}
-    //       <small style={{ fontSize: ".7rem" }}>
-    //         (add <strong>,</strong> to separate)
-    //       </small>
-    //     </label>
-    //     <input
-    //       type="text"
-    //       required
-    //       value={skills}
-    //       onChange={(e) => setSkills(e.target.value)}
-    //     />
-    //     <br />
-
-    //     <label>About Yourself:</label>
-    //     <textarea
-    //       required
-    //       value={intro}
-    //       onChange={(e) => setIntro(e.target.value)}
-    //     ></textarea>
-    //     <br />
-
-    //     <label>Profile Picture:</label>
-    //     <input
-    //       type="file"
-    //       accept="image/*"
-    //       onChange={profilepicturehandleImageChange}
-    //     />
-
-    //     {image && (
-    //       <div>
-    //         <p>Preview:</p>
-    //         <img
-    //           src={image}
-    //           alt="preview"
-    //           style={{ width: "150px", border: "1px solid #ccc" }}
-    //         />
-    //       </div>
-    //     )}
-
-    //     <label>Resume:</label>
-    //     <input
-    //       type="file"
-    //       accept="application/pdf"
-    //       onChange={resumehandlePDFChange}
-    //     />
-
-    //     {pdfBase64 && (
-    //       <div>
-    //         <p>Resume: {pdfName}</p>
-    //         <iframe
-    //           src={pdfBase64}
-    //           title="PDF Preview"
-    //           width="300"
-    //           height="200"
-    //           style={{ border: "1px solid #ccc" }}
-    //         ></iframe>
-    //       </div>
-    //     )}
-
-    //     <input type="submit" value="Update Details" />
-    //   </form>
-    // </div>
-
-
-
-    <div className="form-container">
-      <form onSubmit={updateDetails} className="profile-form">
-        <label>First Name:</label>
-        <input
-          type="text"
-          required
-          value={firstname}
-          onChange={(e) => setFirstname(e.target.value)}
-        />
-
-        <label>Last Name:</label>
-        <input
-          type="text"
-          required
-          value={lastname}
-          onChange={(e) => setLastname(e.target.value)}
-        />
-
-        <label>Email:</label>
-        <input
-          type="email"
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <label>Phone Number:</label>
-        <input
-          type="tel"
-          pattern="[0-9]{4}[0-9]{2}[0-9]{4}"
-          value={phonenumber}
-          onChange={(e) => setPhonenumber(e.target.value)}
-          required
-        />
-
-        <label>
-          Skills{" "}
-          <small>(add <strong>,</strong> to separate)</small>
-        </label>
-        <input
-          type="text"
-          required
-          value={skills}
-          onChange={(e) => setSkills(e.target.value)}
-        />
-
-        <label>About Yourself:</label>
-        <textarea
-          required
-          value={intro}
-          onChange={(e) => setIntro(e.target.value)}
-        ></textarea>
-
-        <label>Profile Picture:</label>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={profilepicturehandleImageChange}
-        />
-
-        {image && (
-          <div className="preview-container">
-            <p>Preview:</p>
-            <img src={image} alt="preview" className="image-preview" />
+    <div className="container my-5">
+      <div className="card shadow p-4">
+        <h3 className="mb-4 text-center">Update Profile</h3>
+        <form onSubmit={updateDetails} className="needs-validation" noValidate>
+          {/* First Name */}
+          <div className="mb-3">
+            <label className="form-label">First Name</label>
+            <input
+              type="text"
+              className="form-control"
+              required
+              value={firstname}
+              onChange={(e) => setFirstname(e.target.value)}
+            />
           </div>
-        )}
 
-        <label>Resume:</label>
-        <input
-          type="file"
-          accept="application/pdf"
-          onChange={resumehandlePDFChange}
-        />
-
-        {pdfBase64 && (
-          <div className="preview-container">
-            <p>Resume: {pdfName}</p>
-            <iframe
-              src={pdfBase64}
-              title="PDF Preview"
-              className="pdf-preview"
-            ></iframe>
+          {/* Last Name */}
+          <div className="mb-3">
+            <label className="form-label">Last Name</label>
+            <input
+              type="text"
+              className="form-control"
+              required
+              value={lastname}
+              onChange={(e) => setLastname(e.target.value)}
+            />
           </div>
-        )}
 
-        <input type="submit" value="Update Details" className="submit-btn" />
-      </form>
+          {/* Email */}
+          <div className="mb-3">
+            <label className="form-label">Email</label>
+            <input
+              type="email"
+              className="form-control"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+
+          {/* Phone Number */}
+          <div className="mb-3">
+            <label className="form-label">Phone Number</label>
+            <input
+              type="tel"
+              className="form-control"
+              pattern="[0-9]{4}[0-9]{2}[0-9]{4}"
+              value={phonenumber}
+              onChange={(e) => setPhonenumber(e.target.value)}
+              required
+            />
+            <div className="form-text">Format: 0000 00 0000</div>
+          </div>
+
+          {/* Skills */}
+          <div className="mb-3">
+            <label className="form-label">
+              Skills <small>(separate with commas)</small>
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              required
+              value={skills}
+              onChange={(e) => setSkills(e.target.value)}
+            />
+          </div>
+
+          {/* About Yourself */}
+          <div className="mb-3">
+            <label className="form-label">About Yourself</label>
+            <textarea
+              className="form-control"
+              rows="4"
+              required
+              value={intro}
+              onChange={(e) => setIntro(e.target.value)}
+            ></textarea>
+          </div>
+
+          {/* Profile Picture */}
+          <div className="mb-3">
+            <label className="form-label">Profile Picture</label>
+            <input
+              type="file"
+              className="form-control"
+              accept="image/*"
+              onChange={profilepicturehandleImageChange}
+            />
+            {image && (
+              <div className="mt-3 text-center">
+                <p className="fw-bold">Preview:</p>
+                <img
+                  src={image}
+                  alt="preview"
+                  className="img-thumbnail"
+                  style={{ maxWidth: "200px" }}
+                />
+              </div>
+            )}
+          </div>
+
+          {/* Resume */}
+          <div className="mb-3">
+            <label className="form-label">Resume (PDF)</label>
+            <input
+              type="file"
+              className="form-control"
+              accept="application/pdf"
+              onChange={resumehandlePDFChange}
+            />
+            {pdfBase64 && (
+              <div className="mt-3">
+                <p className="fw-bold">Resume: {pdfName}</p>
+                <iframe
+                  src={pdfBase64}
+                  title="PDF Preview"
+                  className="w-100 border rounded"
+                  style={{ height: "400px" }}
+                ></iframe>
+              </div>
+            )}
+          </div>
+
+          {/* Submit Button */}
+          <div className="d-grid">
+            <button type="submit" className="btn btn-primary">
+              Update Details
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
+
   );
 }
 

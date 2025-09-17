@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
-import './Css/Jobposting.css'
+
 
 const Jobposting = () => {
   const navigate = useNavigate();

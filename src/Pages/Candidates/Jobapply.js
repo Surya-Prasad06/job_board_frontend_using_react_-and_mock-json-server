@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import './Css/JobDetails.css'
 const Jobapply = () => {
   const { id } = useParams(); // jobId
   const candidateId = sessionStorage.getItem("candiateid"); // from session
@@ -96,185 +95,149 @@ const Jobapply = () => {
   };
 
   return (
-    // <div>
-    //   <div>
-    //     <Link to={jobDetails.companywebsite}>{jobDetails.companyName}</Link>
-    //     <h3>
-    //       Job Role: <h1>{jobDetails.role}</h1>
-    //     </h3>
-    //     <h4>Experience: {jobDetails.experience}</h4>
-    //     <h4>No. of positions: {jobDetails.positions}</h4>
-    //     <h3>Job Description</h3>
-    //     <p>{jobDetails.description}</p>
-    //     <h3>Roles and Responsibilities</h3>
-    //     <p>{jobDetails.responsibilites}</p>
 
-    //     <button
-    //       type="button"
-    //       onClick={confirmApply}
-    //       disabled={alreadyApplied}
-    //     >
-    //       {alreadyApplied ? "Applied" : "Apply"}
-    //     </button>
-    //   </div>
+<div className="container my-5">
+  {/* Job Card */}
+  <div className="card shadow p-4 mb-4">
+    <h4>
+      <Link
+        to={jobDetails.companywebsite}
+        className="text-decoration-none fw-bold text-primary"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {jobDetails.companyName}
+      </Link>
+    </h4>
+    <h2 className="mb-3">{jobDetails.role}</h2>
 
-    //   {applyJob && !alreadyApplied && (
-    //     <form onSubmit={handleJobApplication}>
-    //       <label>Name</label>
-    //       <input
-    //         type="text"
-    //         value={name}
-    //         onChange={(e) => setName(e.target.value)}
-    //         required
-    //       />
+    <p className="text-muted mb-1">Experience: {jobDetails.experience}</p>
+    <p className="text-muted mb-3">No. of positions: {jobDetails.positions}</p>
 
-    //       <label>Phone Number</label>
-    //       <input
-    //         type="tel"
-    //         pattern="[0-9]{10}"
-    //         value={number}
-    //         onChange={(e) => setNumber(e.target.value)}
-    //         required
-    //       />
-
-    //       <label>Skills</label> <small>(separate with commas)</small>
-    //       <input
-    //         type="text"
-    //         placeholder="Your Skills"
-    //         value={skills}
-    //         onChange={(e) => setSkills(e.target.value)}
-    //         required
-    //       />
-
-    //       <label>Resume</label>
-    //       <input
-    //         type="file"
-    //         accept="application/pdf"
-    //         onChange={handleResumeUpload}
-    //         required
-    //       />
-    //       {pdfBase64 && (
-    //         <div>
-    //           <p>Uploaded: {pdfName}</p>
-    //           <iframe
-    //             src={pdfBase64}
-    //             title="PDF Preview"
-    //             width="300"
-    //             height="200"
-    //             style={{ border: "1px solid #ccc" }}
-    //           />
-    //         </div>
-    //       )}
-
-    //       <label>Experience (in months)</label>
-    //       <input
-    //         type="number"
-    //         value={experience}
-    //         onChange={(e) => setExperience(e.target.value)}
-    //         required
-    //       />
-
-    //       <label>Why should we hire you?</label>
-    //       <textarea
-    //         placeholder="Your message"
-    //         value={message}
-    //         onChange={(e) => setMessage(e.target.value)}
-    //         required
-    //       />
-
-    //       <input type="submit" value="Apply for this Job" />
-    //     </form>
-    //   )}
-    // </div>
-
-    <div className="job-details-container">
-  <div className="job-card">
-    <Link to={jobDetails.companywebsite} className="company-link">
-      {jobDetails.companyName}
-    </Link>
-
-    <h2 className="job-role">{jobDetails.role}</h2>
-    <p className="job-meta">Experience: {jobDetails.experience}</p>
-    <p className="job-meta">No. of positions: {jobDetails.positions}</p>
-
-    <h3>Job Description</h3>
+    <h5>Job Description</h5>
     <p>{jobDetails.description}</p>
 
-    <h3>Roles and Responsibilities</h3>
+    <h5>Roles and Responsibilities</h5>
     <p>{jobDetails.responsibilites}</p>
 
-    <button
-      type="button"
-      className={`apply-btn ${alreadyApplied ? "applied" : ""}`}
-      onClick={confirmApply}
-      disabled={alreadyApplied}
-    >
-      {alreadyApplied ? "Applied" : "Apply"}
-    </button>
+    <div className="d-grid mt-3">
+      <button
+        type="button"
+        className={`btn ${alreadyApplied ? "btn-secondary" : "btn-success"}`}
+        onClick={confirmApply}
+        disabled={alreadyApplied}
+      >
+        {alreadyApplied ? "Applied" : "Apply"}
+      </button>
+    </div>
   </div>
 
+  {/* Application Form */}
   {applyJob && !alreadyApplied && (
-    <form className="apply-form" onSubmit={handleJobApplication}>
-      <label>Name</label>
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        required
-      />
-
-      <label>Phone Number</label>
-      <input
-        type="tel"
-        pattern="[0-9]{10}"
-        value={number}
-        onChange={(e) => setNumber(e.target.value)}
-        required
-      />
-
-      <label>Skills <small>(separate with commas)</small></label>
-      <input
-        type="text"
-        placeholder="Your Skills"
-        value={skills}
-        onChange={(e) => setSkills(e.target.value)}
-        required
-      />
-
-      <label>Resume</label>
-      <input
-        type="file"
-        accept="application/pdf"
-        onChange={handleResumeUpload}
-        required
-      />
-      {pdfBase64 && (
-        <div className="pdf-preview">
-          <p>Uploaded: {pdfName}</p>
-          <iframe src={pdfBase64} title="PDF Preview" width="100%" height="200" />
+    <div className="card shadow p-4">
+      <h4 className="mb-4">Apply for this Job</h4>
+      <form className="needs-validation" noValidate onSubmit={handleJobApplication}>
+        
+        {/* Name */}
+        <div className="mb-3">
+          <label className="form-label">Name</label>
+          <input
+            type="text"
+            className="form-control"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
         </div>
-      )}
 
-      <label>Experience (in months)</label>
-      <input
-        type="number"
-        value={experience}
-        onChange={(e) => setExperience(e.target.value)}
-        required
-      />
+        {/* Phone */}
+        <div className="mb-3">
+          <label className="form-label">Phone Number</label>
+          <input
+            type="tel"
+            className="form-control"
+            pattern="[0-9]{10}"
+            value={number}
+            onChange={(e) => setNumber(e.target.value)}
+            required
+          />
+          <div className="form-text">Enter 10 digits</div>
+        </div>
 
-      <label>Why should we hire you?</label>
-      <textarea
-        placeholder="Your message"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        required
-      />
+        {/* Skills */}
+        <div className="mb-3">
+          <label className="form-label">
+            Skills <small>(separate with commas)</small>
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Your Skills"
+            value={skills}
+            onChange={(e) => setSkills(e.target.value)}
+            required
+          />
+        </div>
 
-      <input type="submit" className="submit-btn" value="Apply for this Job" />
-    </form>
+        {/* Resume */}
+        <div className="mb-3">
+          <label className="form-label">Resume (PDF)</label>
+          <input
+            type="file"
+            className="form-control"
+            accept="application/pdf"
+            onChange={handleResumeUpload}
+            required
+          />
+          {pdfBase64 && (
+            <div className="mt-3">
+              <p className="fw-bold">Uploaded: {pdfName}</p>
+              <iframe
+                src={pdfBase64}
+                title="PDF Preview"
+                className="w-100 border rounded"
+                style={{ height: "250px" }}
+              />
+            </div>
+          )}
+        </div>
+
+        {/* Experience */}
+        <div className="mb-3">
+          <label className="form-label">Experience (in months)</label>
+          <input
+            type="number"
+            className="form-control"
+            value={experience}
+            onChange={(e) => setExperience(e.target.value)}
+            required
+          />
+        </div>
+
+        {/* Why hire you */}
+        <div className="mb-3">
+          <label className="form-label">Why should we hire you?</label>
+          <textarea
+            className="form-control"
+            placeholder="Your message"
+            rows="4"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            required
+          />
+        </div>
+
+        {/* Submit */}
+        <div className="d-grid">
+          <button type="submit" className="btn btn-primary">
+            Apply for this Job
+          </button>
+        </div>
+      </form>
+    </div>
   )}
 </div>
+
 
   );
 };

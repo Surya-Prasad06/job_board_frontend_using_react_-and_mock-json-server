@@ -19,6 +19,7 @@ import AppliedCandidates from './Pages/Recutriers/AppliedCandidates'
 import Candidateprofileupdatepage from './Pages/Candidates/Candidateprofileupdatepage';
 import AppliedJobs from './Pages/Candidates/AppliedJobs';
 import Updateaboutcompany from './Pages/Recutriers/Updateaboutcompany';
+import { useState } from 'react';
 function App() {
   const companyId = sessionStorage.getItem('companyId')
   const candiateid = sessionStorage.getItem('candiateid')
