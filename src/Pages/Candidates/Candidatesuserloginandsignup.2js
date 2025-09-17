@@ -1,0 +1,269 @@
+import axios from "axios";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./Css/Candidatesuserloginandsignup.css";
+const Candidatesuserloginandsignup = () => {
+  const [isLogined, setIsLogined] = useState(true);
+
+
+  return (
+    // <>
+    //   {isLogined ? (
+    //     <>
+    //       <div className="form-container">
+    //         <Loginform />
+    //         <div className="switch-link" onClick={() => setIsLogined(false)}>
+    //           Don't have an account? <b>Sign Up</b>
+    //         </div>
+    //       </div>
+    //     </>
+    //   ) : (
+    //     <>
+    //       <div className="form-container">
+    //         <SignUpform />
+    //         <div className="switch-link" onClick={() => setIsLogined(true)}>
+    //           Already have an account? <b>Login</b>
+    //         </div>
+    //       </div>
+    //     </>
+    //   )}
+    // </>
+
+
+    <>
+      <div className="center-wrapper">
+        {isLogined ? (
+          <>
+
+            <div className="form-container">
+              <Loginform />
+            </div> <br />
+            <div className="switch-link" onClick={() => setIsLogined(false)}>
+              Don&apos;t have an account? <b>Sign Up</b>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="form-container">
+              <SignUpform />
+            </div>
+            <div className="switch-link" onClick={() => setIsLogined(true)}>
+              Already have an account? <b>Login</b>
+            </div>
+          </>
+        )}
+      </div>
+    </>
+
+  );
+};
+
+export default Candidatesuserloginandsignup;
+
+
+
+
+const Loginform = () => {
+
+  const [password, setPassword] = useState("")
+  const [identifier, setIdentifier] = useState("");
+  const navigate = useNavigate();
+  const loginformsubmit = (e) => {
+    e.preventDefault();
+
+    axios.get("http://localhost:5000/cadidatesregistration")
+      .then((response) => {
+        const users = response.data;
+
+        const matchedUser = users.find(user =>
+          (user.email?.toLowerCase() === identifier.toLowerCase() ||
+            user.phonenumber === identifier) &&
+          user.password === password
+        );
+
+
+        if (matchedUser) {
+          sessionStorage.setItem('candiateid', matchedUser.id);
+          sessionStorage.setItem('username', matchedUser.username);
+          alert("Login successful!");
+          navigate('/candidateprofile')
+        } else {
+          alert("Invalid credentials");
+        }
+      })
+      .catch(error => {
+        console.error("Error fetching users", error);
+        alert("Something went wrong!");
+      });
+  }
+
+
+  return (
+    // <>
+    // <form onSubmit={loginformsubmit}>
+    //   <label>Email or Phone Number</label>
+    //   <input
+    //     type="text"
+    //     value={identifier}
+    //     onChange={(e) => setIdentifier(e.target.value)}
+    //     required
+    //   />
+    //   <label>Password</label>
+    //   <input
+    //     value={password}
+    //     onChange={(event) => setPassword(event.target.value)}
+    //     type="password"
+    //     required
+    //   />
+    //   <input type="submit" value="Login" />
+    // </form>
+    // </>
+
+
+
+    <>
+      <form onSubmit={loginformsubmit} className="login-form">
+        <h2 className="form-title">Login</h2>
+
+        <label>Email or Phone Number</label>
+        <input
+          type="text"
+          value={identifier}
+          onChange={(e) => setIdentifier(e.target.value)}
+          required
+        />
+
+        <label>Password</label>
+        <input
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+          type="password"
+          required
+        />
+
+        <input type="submit" value="Login" className="submit-btn" />
+      </form>
+    </>
+  );
+};
+
+
+
+const SignUpform = () => {
+  const [username, setUsername] = useState("")
+  const [email, setEmail] = useState("")
+  const [reemail, setReemail] = useState("")
+  const [phonenumber, setPhonenumber] = useState("")
+  const [rephonenumber, setRephonenumber] = useState("")
+  const [password, setPassword] = useState("")
+  const [repassword, setRepassword] = useState("")
+  const navigate = useNavigate()
+  const Signupformsubmit = (e) => {
+    e.preventDefault();
+    if (email === reemail && phonenumber === rephonenumber && password === repassword && password.length >= 8) {
+      axios.post("http://localhost:5000/cadidatesregistration", { email, password, username, phonenumber })
+        .then((response) => {
+          alert("Scessfully Created an account😊")
+          console.log(response.data)
+          navigate('/candidateregister')
+          sessionStorage.setItem("candiateid", response.data.id)
+          sessionStorage.setItem("username", username)
+        }
+        )
+        .catch((error) => {
+          console.error(error)
+        }
+        )
+    }
+    else {
+      alert("Enter the details corectly")
+    }
+  }
+  return (
+    // <>
+    // <form onSubmit={Signupformsubmit}>
+    //   <label>Username</label>
+    //   <input value={username} onChange={(event) => setUsername(event.target.value)} type="text" required />
+    //   <label>Email</label>
+    //   <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} required />
+    //   <label>Re-Enter Email</label>
+    //   <input type="email" value={reemail} onChange={(event) => setReemail(event.target.value)} required />
+    //   <label>Phone Number</label>
+    //   <input type="tel" value={phonenumber} onChange={(event) => setPhonenumber(event.target.value)} pattern="[0-9]{10}" required />
+    //   <label>Re-Enter Phone Number</label>
+    //   <input type="tel" value={rephonenumber} onChange={(event) => setRephonenumber(event.target.value)} pattern="[0-9]{10}" required />
+    //   <label>Password</label>
+    //   <input type="password" value={password} onChange={(event) => setPassword(event.target.value)} required />
+    //   <label>Re-Enter Password</label>
+    //   <input type="password" value={repassword} onChange={(event) => setRepassword(event.target.value)} required />
+    //   <input type="submit" value="Sign Up" />
+    // </form>
+    // </>
+
+    <>
+      <form onSubmit={Signupformsubmit} className="signup-form">
+        <h2 className="form-title">Create Account</h2>
+
+        <label>Username</label>
+        <input
+          value={username}
+          onChange={(event) => setUsername(event.target.value)}
+          type="text"
+          required
+        />
+
+        <label>Email</label>
+        <input
+          type="email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+          required
+        />
+
+        <label>Re-Enter Email</label>
+        <input
+          type="email"
+          value={reemail}
+          onChange={(event) => setReemail(event.target.value)}
+          required
+        />
+
+        <label>Phone Number</label>
+        <input
+          type="tel"
+          value={phonenumber}
+          onChange={(event) => setPhonenumber(event.target.value)}
+          pattern="[0-9]{10}"
+          required
+        />
+
+        <label>Re-Enter Phone Number</label>
+        <input
+          type="tel"
+          value={rephonenumber}
+          onChange={(event) => setRephonenumber(event.target.value)}
+          pattern="[0-9]{10}"
+          required
+        />
+
+        <label>Password</label>
+        <input
+          type="password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+          required
+        />
+
+        <label>Re-Enter Password</label>
+        <input
+          type="password"
+          value={repassword}
+          onChange={(event) => setRepassword(event.target.value)}
+          required
+        />
+
+        <input type="submit" value="Sign Up" className="submit-btn" />
+      </form>
+    </>
+  );
+}

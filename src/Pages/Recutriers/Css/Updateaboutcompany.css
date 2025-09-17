@@ -1,0 +1,79 @@
+.company-registration-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 30px 25px;
+  background: linear-gradient(135deg, #ffffff, #e3f2fd);
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  font-family: 'Roboto', sans-serif;
+}
+
+.form-title {
+  text-align: center;
+  color: #1976d2;
+  margin-bottom: 25px;
+  font-size: 28px;
+}
+
+.company-registration-form label {
+  display: block;
+  margin-top: 15px;
+  color: #333;
+  font-weight: 500;
+}
+
+.company-registration-form input[type="text"],
+.company-registration-form input[type="url"],
+.company-registration-form input[type="file"],
+.company-registration-form textarea {
+  width: 90%;
+  padding: 10px 12px;
+  margin-top: 6px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.company-registration-form input:focus,
+.company-registration-form textarea:focus {
+  border-color: #1976d2;
+  box-shadow: 0 0 6px rgba(25,118,210,0.3);
+}
+
+.company-registration-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.image-preview {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.image-preview img {
+  max-width: 200px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 12px 0;
+  margin-top: 20px;
+  background: linear-gradient(45deg, #1976d2, #42a5f5);
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.submit-btn:hover {
+  background: linear-gradient(45deg, #1565c0, #1976d2);
+  transform: translateY(-2px);
+}
