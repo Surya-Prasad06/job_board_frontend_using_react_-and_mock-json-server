@@ -1,0 +1,24 @@
+.marquee-container {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      background-color: #ff0707; /* bg-warning */
+    }
+
+    .marquee-text {
+      display: inline-block;
+      white-space: nowrap;
+      padding: 1rem; /* p-3 */
+      font-weight: 700; /* fw-bold */
+      color: #ffffff; /* text-dark */
+      animation: moveRight 20s linear infinite;
+    }
+
+    @keyframes moveRight {
+      0% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(100%);
+      }
+    }

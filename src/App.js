@@ -20,6 +20,7 @@ import Candidateprofileupdatepage from './Pages/Candidates/Candidateprofileupdat
 import AppliedJobs from './Pages/Candidates/AppliedJobs';
 import Updateaboutcompany from './Pages/Recutriers/Updateaboutcompany';
 import { useState } from 'react';
+import Text from './Components/Text';
 function App() {
   const companyId = sessionStorage.getItem('companyId')
   const candiateid = sessionStorage.getItem('candiateid')
@@ -34,7 +35,7 @@ function App() {
         ) : null}
 
         <br />
-
+        <Text />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/recutrierslogin' element={<Loginandsignuppage />} />
