@@ -11,14 +11,14 @@
       padding: 1rem; /* p-3 */
       font-weight: 700; /* fw-bold */
       color: #ffffff; /* text-dark */
-      animation: moveRight 20s linear infinite;
+      animation: moveRightToLeft 20s linear infinite;
     }
 
-    @keyframes moveRight {
+    @keyframes moveRightToLeft {
       0% {
-        transform: translateX(-100%);
+        transform: translateX(100%);
       }
       100% {
-        transform: translateX(100%);
+        transform: translateX(-100%);
       }
     }
